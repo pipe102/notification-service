@@ -9,27 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PrismaService = void 0;
+exports.CountRecipientNotifications = void 0;
 const common_1 = require("@nestjs/common");
-const client_1 = require("@prisma/client");
-let PrismaService = class PrismaService extends client_1.PrismaClient {
-    constructor() {
-        super({
-            log: ["query"],
-        });
+const notifications_repository_1 = require("../application/repositories/notifications-repository");
+let CountRecipientNotifications = class CountRecipientNotifications {
+    constructor(notificationsRepository) {
+        this.notificationsRepository = notificationsRepository;
     }
-    async onModuleInit() {
-        await this.$connect();
-    }
-    async enableShutdownHooks(app) {
-        this.$on("beforeExit", async () => {
-            await app.close();
-        });
+    async execute(request) {
+        const { recipientId } = request;
+        const count = await this.notificationsRepository.countManyByRecipientId(recipientId);
+        return { count };
     }
 };
-PrismaService = __decorate([
+CountRecipientNotifications = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [])
-], PrismaService);
-exports.PrismaService = PrismaService;
-//# sourceMappingURL=prisma.service.js.map
+    __metadata("design:paramtypes", [notifications_repository_1.NotificationsRepository])
+], CountRecipientNotifications);
+exports.CountRecipientNotifications = CountRecipientNotifications;
+//# sourceMappingURL=count-recipient-notifications.js.map
