@@ -11,6 +11,7 @@ This project is a microservice responsible to send notification to the user. The
 - Prisma
 - Typescript
 - Jest
+- Kafka Apache
 
 ---
 
@@ -41,7 +42,7 @@ $ yarn start:dev
 
 ---
 
-# Tests
+## Tests
 
 ```bash
 # Run all using npm
