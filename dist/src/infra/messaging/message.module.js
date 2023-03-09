@@ -6,17 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
-const database_module_1 = require("./infra/database/database.module");
-const messaging_module_1 = require("./infra/messaging/messaging.module");
+exports.MessagingModule = void 0;
 const common_1 = require("@nestjs/common");
-const http_module_1 = require("./infra/http.module");
-let AppModule = class AppModule {
+const kafka_consumer_service_1 = require("./kafka/kafka-consumer.service");
+let MessagingModule = class MessagingModule {
 };
-AppModule = __decorate([
+MessagingModule = __decorate([
     (0, common_1.Module)({
-        imports: [http_module_1.HttpModule, database_module_1.DatabaseModule, messaging_module_1.MessagingModule],
+        imports: [],
+        providers: [kafka_consumer_service_1.KafkaConsumerService],
+        controllers: [],
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], MessagingModule);
+exports.MessagingModule = MessagingModule;
+//# sourceMappingURL=message.module.js.map
